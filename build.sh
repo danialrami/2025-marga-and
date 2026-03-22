@@ -6,12 +6,13 @@
 # 2. Converts any HEIC files to JPEG
 # 3. Generates photo metadata
 # 4. Builds static files to public/ directory
-# 5. Optionally starts a local development server
+# 5. Optionally starts a local development server or deploys to Hostinger
 #
 # Usage:
-#   ./build.sh           - Build and serve
-#   ./build.sh --build   - Build only (no server)
-#   ./build.sh --help    - Show help
+#   ./build.sh              - Build and serve
+#   ./build.sh --build      - Build only (no server)
+#   ./build.sh --deploy     - Build and deploy to Hostinger
+#   ./build.sh --help       - Show help
 
 set -e
 
@@ -40,13 +41,21 @@ Usage: ./build.sh [OPTIONS]
 
 Options:
     --build       Build only, don't start server
+    --deploy      Build and deploy to Hostinger (pushes to hostinger branch)
     --port PORT   Set server port (default: 8080)
     --help        Show this help message
 
 Examples:
-    ./build.sh           Build and serve on port 8080
-    ./build.sh --build   Build only to public/
-    ./build.sh --port 3000   Serve on port 3000
+    ./build.sh              Build and serve on port 8080
+    ./build.sh --build      Build only to public/
+    ./build.sh --deploy     Build and deploy to Hostinger
+
+Deployment:
+    The --deploy option will:
+    1. Build the public/ directory with all photos
+    2. Commit with a timestamp message
+    3. Push to the 'hostinger' branch
+    4. Hostinger can pull from this branch for deployment
 
 EOF
 }
@@ -201,6 +210,51 @@ fs.writeFileSync('$PUBLIC_DIR/photos-data.js', js);
     echo "You can open $PUBLIC_DIR/index.html in a browser to preview"
 }
 
+deploy() {
+    log_info "Deploying to Hostinger..."
+    
+    # Ensure we're on main branch
+    current_branch=$(git rev-parse --abbrev-ref HEAD)
+    if [ "$current_branch" != "main" ]; then
+        log_warn "Not on main branch (currently on $current_branch)"
+        read -p "Continue anyway? (y/n) " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            log_info "Deployment cancelled"
+            exit 0
+        fi
+    fi
+    
+    # Check if remote exists
+    if ! git remote get-url origin &>/dev/null; then
+        log_error "No remote 'origin' configured. Run: git remote add origin <url>"
+        exit 1
+    fi
+    
+    # Use git subtree split to create a branch with only public/
+    log_info "Creating deployment branch..."
+    git subtree split --prefix public -b hostinger-deploy --quiet
+    
+    # Push to hostinger branch
+    log_info "Pushing to hostinger branch..."
+    git push origin hostinger-deploy:hostinger --force
+    
+    # Cleanup
+    git branch -D hostinger-deploy --quiet
+    
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo ""
+    log_success "Deployment complete!"
+    echo ""
+    echo "  Deployed to: origin/hostinger"
+    echo "  Timestamp: $(date '+%Y-%m-%d %H:%M:%S')"
+    echo ""
+    echo "  Hostinger will pull from this branch for deployment."
+    echo ""
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+}
+
 start_server() {
     log_info "Starting development server on port $PORT..."
     echo ""
@@ -222,11 +276,16 @@ start_server() {
 
 # Parse arguments
 BUILD_ONLY=false
+DEPLOY=false
 
 while [[ $# -gt 0 ]]; do
     case $1 in
         --build)
             BUILD_ONLY=true
+            shift
+            ;;
+        --deploy)
+            DEPLOY=true
             shift
             ;;
         --port)
@@ -257,13 +316,18 @@ convert_heic
 build_metadata
 build_public
 
-echo ""
-log_success "Build complete!"
-
-if [ "$BUILD_ONLY" = true ]; then
+if [ "$DEPLOY" = true ]; then
     echo ""
-    log_info "Run './build.sh' to start the server"
+    deploy
 else
     echo ""
-    start_server
+    log_success "Build complete!"
+
+    if [ "$BUILD_ONLY" = true ]; then
+        echo ""
+        log_info "Run './build.sh' to start the server"
+    else
+        echo ""
+        start_server
+    fi
 fi
