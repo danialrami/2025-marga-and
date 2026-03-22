@@ -69,19 +69,16 @@ Then open [http://localhost:8080](http://localhost:8080) in your browser.
 
 ### 3. Deploying
 
-The `public/` directory contains all static files ready for deployment:
-
-1. Upload contents of `public/` to Hostinger (or any static host)
-2. Alternatively, use git subtree to deploy:
-
 ```bash
-# Build the public directory
-./build.sh --build
-
-# Push to hostinger branch (if remote is configured)
-git subtree split --prefix public -b hostinger-deploy
-git push origin hostinger-deploy:hostinger --force
+./build.sh --deploy
 ```
+
+This will:
+1. Build the `public/` directory with all photos and assets
+2. Commit with a timestamp
+3. Push to the `hostinger` branch using git subtree split
+
+Hostinger can then pull from this branch for deployment.
 
 ### Photo Safety
 
@@ -120,9 +117,29 @@ git push origin hostinger-deploy:hostinger --force
 
 ## Deployment
 
-This is a fully static site. The `public/` directory contains all files needed for deployment:
+### Quick Deploy
 
-1. **Hostinger**: Upload contents of `public/` via File Manager or Git integration
+```bash
+./build.sh --deploy
+```
+
+This will:
+1. Build the `public/` directory with all photos and assets
+2. Commit with a timestamp
+3. Push to the `hostinger` branch using git subtree split
+
+Hostinger can then pull from this branch for deployment.
+
+### Branch Structure
+
+- **`main`**: Source code (website files, fonts, build scripts)
+- **`hostinger`**: Production-ready static files for deployment
+
+### Manual Deployment
+
+The `public/` directory contains all static files needed for deployment:
+
+1. **Hostinger**: Push to `hostinger` branch and configure Hostinger to pull from it
 2. **GitHub Pages**: Push `public/` contents to a `gh-pages` branch
 3. **Netlify/Vercel**: Connect repo and set build output to `public/`
 
