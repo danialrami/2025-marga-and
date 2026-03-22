@@ -1,0 +1,32 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Photos source directory (large, can be regenerated)
+# Run ./build.sh to copy/process photos into public/
+/photos/
+!/photos/*.js
+!/photos/*.sh
+!/photos/package.json
+!/photos/package-lock.json
+/photos/heic-backup/
+
+# Dependencies
+photos/node_modules/
+
+# Build output (public/ folder for Hostinger deployment)
+# NOTE: public/ is tracked by Git LFS for large photos
+!public/
+
+# Logs
+*.log
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Utilities folder
+utilities/

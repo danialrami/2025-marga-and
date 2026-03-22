@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Year of Us - Margarita & Daniel</title>
+  <link rel="icon" type="image/svg+xml" href="svgs/favicon.svg">
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="photos-data.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <img src="svgs/daniel-avatar.svg" alt="Daniel" class="avatar" id="daniel-avatar">
+      <div class="title-container">
+        <h1 class="site-title">One Year of Us</h1>
+        <div class="heart-container">
+          <svg class="heart-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 28l-1.8-1.6C6 19 2 15.2 2 10.5 2 6.4 5.4 3 9.5 3c2.3 0 4.6 1.1 6.5 2.9C17.9 4.1 20.2 3 22.5 3 26.6 3 30 6.4 30 10.5c0 4.7-4 8.5-12.2 15.9L16 28z" fill="#ff1493"/>
+          </svg>
+        </div>
+        <p class="subtitle">Margarita & Daniel</p>
+      </div>
+      <img src="svgs/margarita-avatar.svg" alt="Margarita" class="avatar" id="margarita-avatar">
+    </div>
+  </header>
+
+  <div class="master-timeline" id="master-timeline">
+    <div class="master-timeline-track">
+      <div class="master-timeline-progress" id="master-timeline-progress"></div>
+    </div>
+    <div class="master-timeline-markers" id="master-timeline-markers"></div>
+  </div>
+
+  <nav class="mobile-season-nav" id="mobile-season-nav">
+    <button class="mobile-season-btn active" data-season="Spring">🌸</button>
+    <button class="mobile-season-btn" data-season="Summer">☀️</button>
+    <button class="mobile-season-btn" data-season="Autumn">🍂</button>
+    <button class="mobile-season-btn" data-season="Winter">❄️</button>
+  </nav>
+
+  <div class="view-controls" id="view-controls">
+    <span class="view-label">View by:</span>
+    <div class="view-buttons">
+      <button class="view-btn" data-group="season">Season</button>
+      <button class="view-btn" data-group="month">Month</button>
+      <button class="view-btn active" data-group="week">Week</button>
+      <button class="view-btn" data-group="day">Day</button>
+    </div>
+  </div>
+
+  <main id="timeline">
+    <div class="loading" id="loading">
+      <p>Loading our memories...</p>
+      <div class="loading-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="error-message" id="error-message" style="display: none;"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Made with love for our first year together</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%" style="max-width: 400px; background-color: #a0d4f0;">
+  
+  <rect x="30" y="15" width="40" height="15" fill="#111111" />
+  <rect x="23" y="20" width="15" height="8" fill="#5a3825" />
+  <rect x="23" y="25" width="8" height="25" fill="#5a3825" />
+  <rect x="62" y="20" width="15" height="8" fill="#5a3825" />
+  <rect x="69" y="25" width="8" height="25" fill="#5a3825" />
+
+  <rect x="35" y="25" width="30" height="25" fill="#5a3825" />
+  <rect x="35" y="65" width="30" height="10" fill="#5a3825" /> <rect x="49" y="68" width="2" height="2" fill="#3a1e12" /> <rect x="35" y="20" width="30" height="8" fill="#111111" />
+  <rect x="33" y="25" width="4" height="25" fill="#111111" />
+  <rect x="63" y="25" width="4" height="25" fill="#111111" />
+
+  <rect x="41" y="35" width="4" height="4" fill="#000000" />
+  <rect x="55" y="35" width="4" height="4" fill="#000000" />
+  <rect x="48" y="41" width="4" height="2" fill="#dddddd" />
+  <rect x="49" y="41" width="2" height="2" fill="#5a3825" /> <rect x="46" y="45" width="8" height="2" fill="#3a1e12" />
+  <rect x="43" y="49" width="14" height="1" fill="#111111" />
+
+  <rect x="31" y="50" width="38" height="15" fill="#e8a898" />
+  <rect x="23" y="50" width="8" height="6" fill="#e8a898" />
+  <rect x="69" y="50" width="8" height="6" fill="#e8a898" />
+  <rect x="35" y="52" width="4" height="4" fill="#d94828" />
+  <rect x="45" y="57" width="4" height="4" fill="#d94828" />
+  <rect x="58" y="53" width="4" height="4" fill="#d94828" />
+  <rect x="37" y="60" width="4" height="4" fill="#d94828" />
+
+  <rect x="33" y="75" width="34" height="2" fill="#b33929" /> <rect x="31" y="77" width="18" height="15" fill="#d45a4a" />
+  <rect x="51" y="77" width="18" height="15" fill="#d45a4a" />
+  <rect x="34" y="80" width="4" height="4" fill="#e8cfa6" />
+  <rect x="41" y="86" width="4" height="4" fill="#e8cfa6" />
+  <rect x="54" y="79" width="4" height="4" fill="#e8cfa6" />
+  <rect x="61" y="85" width="4" height="4" fill="#e8cfa6" />
+
+  <polygon points="36,50 40,50 70,70 66,70" fill="#bfa075" />
+  <rect x="63" y="65" width="14" height="16" fill="#bfa075" />
+  <rect x="63" y="68" width="14" height="2" fill="#a08555" /> <rect x="65" y="75" width="4" height="6" fill="#222222" /> <rect x="35" y="92" width="10" height="3" fill="#ffffff" />
+  <rect x="55" y="92" width="10" height="3" fill="#ffffff" />
+
+  <rect x="33" y="95" width="14" height="5" fill="#c4a494" />
+  <rect x="53" y="95" width="14" height="5" fill="#c4a494" />
+  <rect x="37" y="96" width="6" height="1" fill="#eeeeee" />
+  <rect x="57" y="96" width="6" height="1" fill="#eeeeee" />
+
+</svg>
